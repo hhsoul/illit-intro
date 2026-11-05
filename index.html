@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ILLIT 소개</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+  /* Layout: a sky-blue hero whose letters lean toward the pointer like "Magnetic", then quiet sections on a tinted ground. */
+  :root {
+    --bg: #f3f8ff;
+    --sky: #bfe0ff;
+    --ink: #14264f;
+    --muted: #4c5f88;
+    --line: #c6d6ee;
+    --pink: #d81b72;
+    --on-pink: #ffffff;
+    --field: #ffffff;
+    --display: "Bagel Fat One", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1730; --sky: #1b3a72; --ink: #eef4ff; --muted: #a9bbdc; --line: #2c3f68;
+      --pink: #ff78b5; --on-pink: #14264f; --field: #16224a;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1rem;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  .wrap {
+    max-width: 1040px;
+    margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  h1, h2, h3, p, dl, dd, ol, ul { margin: 0; padding: 0; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; }
+  a { color: inherit; text-underline-offset: 3px; }
+  a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+
+  /* Hero */
+  .hero { background: var(--sky); padding-block: 48px 40px; overflow: hidden; }
+  .hero .wrap { display: grid; gap: 28px; }
+  .logo {
+    display: flex;
+    font-size: clamp(5rem, 24vw, 15rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    user-select: none;
+  }
+  .logo span { display: inline-block; will-change: transform; }
+  .logo span:nth-child(3n) { color: var(--pink); }
+  .lead { max-width: 34em; font-size: 1.1875rem; font-weight: 500; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px 24px;
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+  }
+  .facts dt { font-size: 0.8125rem; opacity: 0.8; }
+  .facts dd { font-weight: 600; }
+
+  /* Sections */
+  section { padding-block: 56px 8px; }
+  h2 { font-size: 2rem; line-height: 1.2; color: var(--pink); }
+  .note { color: var(--muted); margin-top: 4px; }
+
+  .members {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .members li { min-width: 0; border-top: 1px solid var(--line); padding-top: 12px; }
+  .members h3 { font-size: 1.75rem; line-height: 1.25; }
+  .roman { color: var(--pink); font-weight: 600; font-size: 0.875rem; letter-spacing: 0.08em; }
+  .members p:last-child { color: var(--muted); font-size: 0.9375rem; font-variant-numeric: tabular-nums; margin-top: 8px; }
+
+  .albums { list-style: none; margin-top: 24px; }
+  .albums li {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px 20px;
+    align-items: baseline;
+    padding-block: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .albums time { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.9375rem; }
+  .albums strong { font-weight: 600; font-size: 1.125rem; overflow-wrap: anywhere; }
+  .albums span { color: var(--muted); }
+  .albums b { color: var(--ink); font-weight: 600; }
+
+  /* Guestbook */
+  .book { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 32px; margin-top: 24px; align-items: start; }
+  .book form { display: grid; gap: 14px; min-width: 0; }
+  .field { display: grid; gap: 4px; }
+  .field label { font-weight: 600; font-size: 0.9375rem; }
+  input, textarea {
+    width: 100%;
+    font: inherit;
+    color: var(--ink);
+    background: var(--field);
+    border: 1px solid var(--muted);
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+  textarea { min-height: 7rem; resize: vertical; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  #count { color: var(--muted); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+  button {
+    font: inherit;
+    font-weight: 600;
+    color: var(--on-pink);
+    background: var(--pink);
+    border: 0;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.6; cursor: default; }
+  #status { min-height: 1.7em; color: var(--muted); font-size: 0.9375rem; }
+  #entries { list-style: none; min-width: 0; }
+  #entries li { border-top: 1px solid var(--line); padding-block: 12px; }
+  .entry-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; }
+  .entry-head strong { font-weight: 600; overflow-wrap: anywhere; }
+  .entry-head time { color: var(--muted); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+  .entry-text { overflow-wrap: anywhere; white-space: pre-wrap; }
+
+  footer { padding-block: 48px; color: var(--muted); font-size: 0.875rem; }
+
+  @media (max-width: 760px) {
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .members { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .albums li { grid-template-columns: minmax(0, 1fr); }
+    .book { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1 class="logo" id="logo" aria-label="ILLIT"><span aria-hidden="true">I</span><span aria-hidden="true">L</span><span aria-hidden="true">L</span><span aria-hidden="true">I</span><span aria-hidden="true">T</span></h1>
+    <p class="lead">아일릿은 2024년 3월 25일에 데뷔한 5인조 걸그룹입니다. 오디션 프로그램 〈R U Next?〉로 결성되었고, 데뷔곡 ‘Magnetic’으로 빌보드 핫 100 91위에 올랐습니다.</p>
+    <dl class="facts">
+      <div><dt>데뷔</dt><dd>2024년 3월 25일</dd></div>
+      <div><dt>소속사</dt><dd>빌리프랩</dd></div>
+      <div><dt>멤버</dt><dd>5명</dd></div>
+      <div><dt>팬덤</dt><dd>GLLIT (글릿)</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>멤버</h2>
+      <ul class="members">
+        <li><p class="roman">YUNAH</p><h3>윤아</h3><p>2004.01.15 · 한국</p></li>
+        <li><p class="roman">MINJU</p><h3>민주</h3><p>2004.05.11 · 한국</p></li>
+        <li><p class="roman">MOKA</p><h3>모카</h3><p>2004.10.08 · 일본</p></li>
+        <li><p class="roman">WONHEE</p><h3>원희</h3><p>2007.06.26 · 한국</p></li>
+        <li><p class="roman">IROHA</p><h3>이로하</h3><p>2008.02.04 · 일본</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>주요 음반</h2>
+      <p class="note">2026년 4월까지 발매된 한국 음반입니다.</p>
+      <ol class="albums">
+        <li><time datetime="2024-03-25">2024.03.25</time><strong>SUPER REAL ME</strong><span>미니 1집 · 타이틀곡 <b>Magnetic</b></span></li>
+        <li><time datetime="2024-10-21">2024.10.21</time><strong>I'LL LIKE YOU</strong><span>미니 2집 · 타이틀곡 <b>Cherish (My Love)</b></span></li>
+        <li><time datetime="2025-06-16">2025.06.16</time><strong>bomb</strong><span>미니 3집 · 타이틀곡 <b>빌려온 고양이 (Do the Dance)</b></span></li>
+        <li><time datetime="2025-11-24">2025.11.24</time><strong>NOT CUTE ANYMORE</strong><span>싱글 · 타이틀곡 <b>NOT CUTE ANYMORE</b></span></li>
+        <li><time datetime="2026-04-30">2026.04.30</time><strong>MAMIHLAPINATAPAI</strong><span>미니 4집 · 타이틀곡 <b>It's Me</b></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>응원 방명록</h2>
+      <p class="note">남긴 글은 이 사이트를 보는 모든 사람에게 공개되며, 직접 수정하거나 지울 수 없습니다.</p>
+      <div class="book">
+        <form id="form">
+          <div class="field">
+            <label for="nickname">닉네임</label>
+            <input id="nickname" name="nickname" maxlength="20" autocomplete="off" required>
+          </div>
+          <div class="field">
+            <label for="message">응원 메시지</label>
+            <textarea id="message" name="message" maxlength="200" required></textarea>
+          </div>
+          <div class="row">
+            <span id="count">0 / 200</span>
+            <button id="submit" type="submit">남기기</button>
+          </div>
+          <p id="status" role="status"></p>
+        </form>
+        <ul id="entries" aria-label="방명록 글 목록"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>이 페이지는 공식 사이트가 아닌 비공식 소개 페이지입니다. 참고 자료: <a href="https://en.wikipedia.org/wiki/Illit_discography">Wikipedia</a>, <a href="https://kprofiles.com/ill-it-members-profile/">Kprofiles</a></p>
+  </div>
+</footer>
+
+<script>
+  /* Magnetic logo */
+  (function () {
+    var logo = document.getElementById("logo");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var letters = Array.prototype.slice.call(logo.children);
+    var frame = null, px = 0, py = 0;
+    function apply() {
+      frame = null;
+      letters.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        var m = el.style.transform.match(/translate\(([-\d.]+)px, ([-\d.]+)px\)/);
+        var ox = m ? parseFloat(m[1]) : 0, oy = m ? parseFloat(m[2]) : 0;
+        var dx = px - (r.left - ox + r.width / 2);
+        var dy = py - (r.top - oy + r.height / 2);
+        var dist = Math.max(Math.hypot(dx, dy), 1);
+        var pull = Math.min(26, 5200 / (dist + 120));
+        el.style.transform = "translate(" + (dx / dist * pull).toFixed(1) + "px, " + (dy / dist * pull).toFixed(1) + "px)";
+      });
+    }
+    letters.forEach(function (el) { el.style.transition = "transform 160ms ease-out"; });
+    var hero = logo.closest(".hero");
+    hero.addEventListener("pointermove", function (e) {
+      px = e.clientX; py = e.clientY;
+      if (!frame) frame = requestAnimationFrame(apply);
+    });
+    hero.addEventListener("pointerleave", function () {
+      letters.forEach(function (el) { el.style.transform = ""; });
+    });
+  })();
+
+  /* Guestbook: Supabase REST API. The publishable key is meant for browsers; access is limited by RLS. */
+  (function () {
+    var API = "https://akuodabqwawrftxycdsu.supabase.co/rest/v1/guestbook";
+    var KEY = "sb_publishable_Wp_j9PzUw8dufsObR0SI4A_q_5YTnfg";
+    var form = document.getElementById("form");
+    var nickname = document.getElementById("nickname");
+    var message = document.getElementById("message");
+    var count = document.getElementById("count");
+    var submit = document.getElementById("submit");
+    var status = document.getElementById("status");
+    var entries = document.getElementById("entries");
+    var dateFormat = new Intl.DateTimeFormat("ko-KR", { dateStyle: "medium", timeStyle: "short" });
+
+    function errorText(body, fallback) {
+      return body && body.code === "PGRST205"
+        ? "방명록 테이블이 아직 없습니다. Supabase에서 guestbook.sql을 먼저 실행해 주세요."
+        : fallback;
+    }
+
+    function render(rows) {
+      entries.textContent = "";
+      if (!rows.length) {
+        var empty = document.createElement("li");
+        empty.textContent = "아직 글이 없습니다. 첫 응원을 남겨 보세요.";
+        entries.appendChild(empty);
+        return;
+      }
+      rows.forEach(function (row) {
+        var li = document.createElement("li");
+        var head = document.createElement("div");
+        head.className = "entry-head";
+        var name = document.createElement("strong");
+        name.textContent = row.nickname;
+        var time = document.createElement("time");
+        time.dateTime = row.created_at;
+        time.textContent = dateFormat.format(new Date(row.created_at));
+        head.append(name, time);
+        var text = document.createElement("p");
+        text.className = "entry-text";
+        text.textContent = row.message;
+        li.append(head, text);
+        entries.appendChild(li);
+      });
+    }
+
+    async function load() {
+      try {
+        var res = await fetch(API + "?select=id,nickname,message,created_at&order=created_at.desc&limit=30", {
+          headers: { apikey: KEY }
+        });
+        var body = await res.json();
+        if (!res.ok) {
+          status.textContent = errorText(body, "글을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.");
+          return false;
+        }
+        render(body);
+        return true;
+      } catch (e) {
+        status.textContent = "서버에 연결하지 못했습니다. 인터넷 연결을 확인하고 새로고침해 주세요.";
+        return false;
+      }
+    }
+
+    message.addEventListener("input", function () {
+      count.textContent = message.value.length + " / 200";
+    });
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      var payload = { nickname: nickname.value.trim(), message: message.value.trim() };
+      if (!payload.nickname || !payload.message) {
+        status.textContent = "닉네임과 응원 메시지를 모두 입력해 주세요.";
+        return;
+      }
+      submit.disabled = true;
+      status.textContent = "남기는 중입니다.";
+      try {
+        var res = await fetch(API, {
+          method: "POST",
+          headers: { apikey: KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+          form.reset();
+          count.textContent = "0 / 200";
+          status.textContent = "응원을 남겼습니다.";
+          await load();
+        } else {
+          var body = await res.json().catch(function () { return null; });
+          status.textContent = errorText(body, "글을 남기지 못했습니다. 잠시 후 다시 시도해 주세요.");
+        }
+      } catch (err) {
+        status.textContent = "서버에 연결하지 못했습니다. 인터넷 연결을 확인해 주세요.";
+      }
+      submit.disabled = false;
+    });
+
+    load();
+  })();
+</script>
+</body>
+</html>
